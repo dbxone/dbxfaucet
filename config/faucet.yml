@@ -1,4 +1,4 @@
-cli_wallet_connection: ws://47.94.107.109:38091
+cli_wallet_connection: ws://0.0.0.0:38091
 registrar_account: nathan
 referrer_percent: 50
 refcode_prefix: F01
