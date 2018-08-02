@@ -23,8 +23,28 @@ class AccountRegistrator
         return nil
     end
 
+    def is_forbidden_name(account_name)
+        if !File.file?("sensitive.word")
+            return false
+        end
+
+        IO.foreach("sensitive.word") {
+            |block|
+            if account_name.include?block
+                return true
+            end
+        }
+
+        return false
+    end
+
     def register(account_name, owner_key, active_key, memo_key, referrer)
         @logger.info("---- Registering account: '#{account_name}' #{owner_key}/#{active_key} referrer: #{referrer}")
+
+        if is_forbidden_name(account_name)
+            @logger.warn("---- Attempt to register premium name: '#{account_name}'")
+            return {error: {'message' => 'Premium names registration is forbidden by this faucet'}}
+        end
 
         if get_account_info(account_name)
             @logger.warn("---- Account exists: '#{account_name}' #{get_account_info(account_name)}")
