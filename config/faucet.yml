@@ -1,5 +1,5 @@
-cli_wallet_connection: ws://0.0.0.0:38091
-registrar_account: nathan
+cli_wallet_connection: ws://127.0.0.1:38091
+registrar_account: dbxroot
 referrer_percent: 50
 refcode_prefix: F01
 
