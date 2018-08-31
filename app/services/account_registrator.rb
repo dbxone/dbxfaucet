@@ -29,8 +29,9 @@ class AccountRegistrator
         end
 
         IO.foreach("sensitive.word") {
-            |block|
-            if account_name.include?block
+            |name|
+	    name = name.chomp
+            if account_name.include?name
                 return true
             end
         }
